@@ -17,21 +17,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Homework #6',
+  title: 'Homework #7',
   description: 'Created by Oleksii Rudenko',
 };
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <TanStackProvider>
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
           <Header />
-          <main>{children}</main>
+          <main>
+            {children}
+            {modal}
+          </main>
           <Footer />
         </body>
       </TanStackProvider>

@@ -11,14 +11,18 @@ import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
 import css from './NotesPage.module.css';
 
-export default function NotesClient() {
+interface NotesClientProps {
+  tag: string | undefined;
+}
+
+export default function NotesClient({ tag }: NotesClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const { data, isSuccess } = useQuery({
-    queryKey: ['notes', { page: currentPage, search: searchQuery }],
-    queryFn: () => fetchNotes(currentPage, searchQuery),
+    queryKey: ['notes', { page: currentPage, search: searchQuery, tag }],
+    queryFn: () => fetchNotes(currentPage, searchQuery, tag),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
@@ -35,7 +39,7 @@ export default function NotesClient() {
 
   return (
     <div className={css.app}>
-      <header className={css.toolbar}>
+      <div className={css.toolbar}>
         <SearchBox initialValue={searchQuery} onSearchChange={handleSearchChange} />
         {totalPages > 1 && isSuccess && (
           <Pagination
@@ -47,7 +51,7 @@ export default function NotesClient() {
         <button onClick={openModal} className={css.button}>
           Create note +
         </button>
-      </header>
+      </div>
       {data?.notes && <NoteList notes={data.notes} />}
       {isModalOpen && (
         <Modal onClose={closeModal}>

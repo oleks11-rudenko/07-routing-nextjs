@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import css from './Header.module.css';
+import TagsMenu from '../TagsMenu/TagsMenu';
+import { tags } from '@/lib/api';
 
 export default function Header() {
   return (
@@ -12,9 +14,7 @@ export default function Header() {
           <li>
             <Link href="/">Home</Link>
           </li>
-          <li>
-            <Link href="/notes">Notes</Link>
-          </li>
+          <TagsMenu tags={tags} />
         </ul>
       </nav>
     </header>
