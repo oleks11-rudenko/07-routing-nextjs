@@ -11,7 +11,7 @@ interface NoteshttpResponse {
   totalPages: number;
 }
 
-export async function fetchNotes(page: number, search: string, tag: string | undefined) {
+export async function fetchNotes(page: number, search: string, tag?: string | undefined) {
   const response = await axios.get<NoteshttpResponse>('notes/', {
     params: {
       ...(search !== '' && { search }),

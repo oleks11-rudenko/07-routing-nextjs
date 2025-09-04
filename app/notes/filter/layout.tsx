@@ -1,6 +1,6 @@
 import css from './LayoutNotes.module.css';
 
-export default function FiterNotesLayout({
+export default function FilterNotesLayout({
   children,
   sidebar,
 }: Readonly<{

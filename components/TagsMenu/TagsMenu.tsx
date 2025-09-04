@@ -20,8 +20,8 @@ export default function TagsMenu({ tags }: TagsMenuProps) {
       {isOpen && (
         <ul className={css.menuList}>
           <li className={css.menuItem}>
-            <Link href={`/notes/filter/all`} onClick={toggle} className={css.menuLink}>
-              All notes
+            <Link href={`/notes/filter/All`} onClick={toggle} className={css.menuLink}>
+              All
             </Link>
           </li>
           {tags.map((tag) => (
